@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # ======================
-# 1. 准备数据
+# 1. 准备数据: y = 2 * x
 # ======================
 x_data = [1.0, 2.0, 3.0]
 y_data = [2.0, 4.0, 6.0]
@@ -59,7 +59,7 @@ for epoch in range(100):
     loss_history.append(MSE)
 
     grad_w = gradient(x_data, y_data)  # 计算梯度
-    w -= 0.01 * grad_w  # 更新参数：w = w - 学习率 * 梯度
+    w -= 0.2 * grad_w  # 更新参数：w = w - 学习率 * 梯度
     print("Epoch:", epoch + 1, "w =", w, "loss =", MSE)
 
 # ======================

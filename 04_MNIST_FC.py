@@ -45,7 +45,7 @@ def train(epoch):
     model.train()
     for batch_idx, (inputs, labels) in enumerate(train_loader):
         # 前向传播
-        outputs = model(inputs)
+        outputs = model(inputs)  # 10个类别的原始分数
         loss = criterion(outputs, labels)
 
         # 反向传播

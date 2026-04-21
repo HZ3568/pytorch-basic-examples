@@ -81,7 +81,7 @@ for w_temp in w_range:
     loss_curve.append(total_cost / len(x_data))
 
 # ======================
-# 9. 可视化
+# 9. (w, loss) 移动轨迹
 # ======================
 plt.figure(figsize=(8, 6))
 plt.plot(w_range, loss_curve, label='Loss Curve')

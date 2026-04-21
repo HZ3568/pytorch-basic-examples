@@ -7,8 +7,9 @@ import matplotlib.pyplot as plt
 x_data = [1.0, 2.0, 3.0]
 y_data = [2.0, 4.0, 6.0]
 
-# 初始化参数 w（模型参数）
+# 初始化参数
 w = 0
+lr = 0.2  # 0.2、0.025、0.003
 
 # 用于记录训练过程中每一轮的 (w, loss)
 w_history = []
@@ -46,25 +47,25 @@ def gradient(xs, ys):
 # ======================
 # 5. 训练前预测
 # ======================
-print('Predict (before training)', 4, forward(4))
+print(f"Predict (before training)  input = {4}, output = {forward(4):.4f}")
 
 # ======================
 # 6. 梯度下降训练过程
 # ======================
-for epoch in range(100):
+for epoch in range(50):
     MSE = cost(x_data, y_data)
     # 记录当前的 (w, loss)，用于后续可视化
     w_history.append(w)
     loss_history.append(MSE)
 
     grad_w = gradient(x_data, y_data)  # 计算梯度
-    w -= 0.2 * grad_w  # 更新参数：w = w - 学习率 * 梯度
-    print("Epoch:", epoch + 1, "w =", w, "loss =", MSE)
+    w -= lr * grad_w  # 更新参数：w = w - 学习率 * 梯度
+    print(f"Epoch = {epoch + 1}, w = {w:.4f}, loss = {MSE:.4f}")
 
 # ======================
 # 7. 训练后预测
 # ======================
-print('Predict (after training)', 4, forward(4))
+print(f"Predict (after training)  input = {4}, output = {forward(4):.4f}")
 
 # ======================
 # 8. 计算完整的损失函数曲线（枚举不同的 w，计算对应的 loss）

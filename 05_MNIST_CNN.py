@@ -3,19 +3,20 @@ from torchvision import datasets, transforms
 from torch.utils.data import DataLoader
 import torch.nn.functional as F
 
+# ======================
 # 1. 准备数据
+# ======================
 batch_size = 64
-
 transform = transforms.ToTensor()
-
 train_dataset = datasets.MNIST(root='./data', train=True, download=True, transform=transform)
 test_dataset = datasets.MNIST(root='./data', train=False, download=True, transform=transform)
-
 train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
 test_loader = DataLoader(test_dataset, batch_size=batch_size, shuffle=False)
 
 
-# 2. 定义CNN模型
+# ======================
+# 2. 定义模型: 卷积神经网络
+# ======================
 class CNNNet(torch.nn.Module):
     def __init__(self):
         super(CNNNet, self).__init__()
@@ -49,15 +50,18 @@ class CNNNet(torch.nn.Module):
         return x
 
 
-# 3. 创建模型
 model = CNNNet()
 
-# 4. 定义损失函数和优化器
+# ======================
+# 3. 定义损失函数和优化器
+# ======================
 criterion = torch.nn.CrossEntropyLoss()
 optimizer = torch.optim.SGD(model.parameters(), lr=0.01)
 
 
-# 5. 训练函数
+# ======================
+# 4. 训练模型
+# ======================
 def train(epoch):
     model.train()
     for batch_idx, (inputs, labels) in enumerate(train_loader):
@@ -72,7 +76,9 @@ def train(epoch):
             print(f'Epoch {epoch}, Batch {batch_idx}, Loss = {loss.item():.4f}')
 
 
-# 6. 测试函数
+# ======================
+# 5. 测试模型
+# ======================
 def test():
     model.eval()
     correct = 0
@@ -89,7 +95,6 @@ def test():
     print(f'Accuracy on test set: {100 * correct / total:.2f}%')
 
 
-# 7. 主程序
 if __name__ == '__main__':
     for epoch in range(1, 6):
         train(epoch)

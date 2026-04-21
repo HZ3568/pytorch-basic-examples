@@ -6,7 +6,6 @@ import matplotlib.pyplot as plt
 # ======================
 x_data = [1.0, 2.0, 3.0]
 y_data = [2.0, 4.0, 6.0]
-# y_data = [5.0, 8.0, 11.0]
 
 # 初始化参数 w（模型参数）
 w = 0
